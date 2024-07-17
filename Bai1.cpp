@@ -14,41 +14,60 @@ void xuatMangChan(int arr[], int n);
 int timX(int arr[], int &n, int &x);
 void Interchange_Sort_Tang(int arr[], int n);
 void Interchange_Sort_Giam(int arr[], int n);
+int binarySearch(int arr[], int l, int r, int x);
 
 int main()
 {
 	//Bai1
 	int myArray[MAX]; 
 	int nSize;
-	//nhapMang(myArray, nSize);
-	//xuatMang(myArray, nSize);
+	////nhapMang(myArray, nSize);
+	////xuatMang(myArray, nSize);
+	//////
+	//////Bai2
+	////int myArray2[MAX];
+	////nhapMangChan(myArray2, nSize);
+	////xuatMangChan(myArray2, nSize);
 	////
-	////Bai2
-	//int myArray2[MAX];
-	//nhapMangChan(myArray2, nSize);
-	//xuatMangChan(myArray2, nSize);
-	//
-	////Bai3
-	//int myArray3[MAX];
-	//int x;
-	//int check = timX(myArray3, nSize, x);
-	//if (check == -1)
-	//{
-	//	printf("Mang khong chua gia tri ban can tim");
-	//}else
-	//{
-	//	printf("Mang chua gia tri ban can tim tai vi tri thu: %d", check + 1);
-	//};
+	//////Bai3
+	////int myArray3[MAX];
+	////int x;
+	////int check = timX(myArray3, nSize, x);
+	////if (check == -1)
+	////{
+	////	printf("Mang khong chua gia tri ban can tim");
+	////}else
+	////{
+	////	printf("Mang chua gia tri ban can tim tai vi tri thu: %d", check + 1);
+	////};
 
-	//Bai4
-	int myArray4[MAX];
-	nhapMang(myArray4, nSize);
+	//////Bai4
+	////int myArray4[MAX];
+	////nhapMang(myArray4, nSize);
+	////printf("Sap xep tang: \n");
+	////Interchange_Sort_Tang(myArray4, nSize);
+	////xuatMang(myArray4, nSize);
+	////printf("Sap xep giam: \n");
+	////Interchange_Sort_Giam(myArray4, nSize);
+	////xuatMang(myArray4, nSize);
+
+	//Bai5
+	int myArray5[MAX], x;
+	nhapMang(myArray5, nSize);
 	printf("Sap xep tang: \n");
-	Interchange_Sort_Tang(myArray4, nSize);
-	xuatMang(myArray4, nSize);
-	printf("Sap xep giam: \n");
-	Interchange_Sort_Giam(myArray4, nSize);
-	xuatMang(myArray4, nSize);
+	Interchange_Sort_Tang(myArray5, nSize);
+	xuatMang(myArray5, nSize);
+	printf("Hay nhap x can tim: ");
+	scanf("%d", &x);
+	int result = binarySearch(myArray5, 0, nSize - 1, x);
+	if (result == -1)
+	{
+		printf("Khong tim thay gia tri.");
+	}
+	else
+	{
+		printf("Da tim thay phan tu tai vi tri thu: %d", result);
+	}
 
 	getch();
 }
@@ -153,3 +172,19 @@ void Interchange_Sort_Giam(int arr[], int n){
 	}
 }
 
+int binarySearch(int arr[], int l, int r, int x)
+{
+	if (r >= l) {
+		int mid = l + (r - l) / 2;
+ 
+		if (arr[mid] == x)
+			return mid;
+
+		if (arr[mid] > x)
+			return binarySearch(arr, l, mid - 1, x);
+
+		return binarySearch(arr, mid + 1, r, x);
+	}
+
+	return -1;
+}
