@@ -10,20 +10,32 @@ void nhapMang(int arr[], int &n);
 void xuatMang(int arr[], int n);
 void nhapMangChan(int arr[], int &n);
 void xuatMangChan(int arr[], int n);
+int timX(int arr[], int &n, int &x);
 
 int main()
 {
 	//Bai1
 	int myArray[MAX]; 
 	int nSize;
-	////nhapMang(myArray, nSize);
-	////xuatMang(myArray, nSize);
+	nhapMang(myArray, nSize);
+	xuatMang(myArray, nSize);
 	//
 	//Bai2
 	int myArray2[MAX];
 	nhapMangChan(myArray2, nSize);
 	xuatMangChan(myArray2, nSize);
-
+	
+	//Bai3
+	int myArray3[MAX];
+	int x;
+	int check = timX(myArray3, nSize, x);
+	if (check == -1)
+	{
+		printf("Mang khong chua gia tri ban can tim");
+	}else
+	{
+		printf("Mang chua gia tri ban can tim tai vi tri thu: %d", check + 1);
+	};
 	getch();
 }
 
@@ -75,4 +87,29 @@ void xuatMangChan(int arr[], int n)
 	{
 		printf("a[%d] = %d\n", i, arr[i]);
 	}
+}
+int timX(int arr[], int &n, int &x)
+{
+	srand((unsigned int)time(NULL));;
+	printf("Hay nhap n phan tu cua mang: ");
+	scanf("%d", &n);
+	printf("Hay nhap x can tim: ");
+	scanf("%d", &x);
+
+	if (n > 0)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			arr[i] = 15 + rand();
+		}
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] == x)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
